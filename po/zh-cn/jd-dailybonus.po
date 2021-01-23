@@ -22,6 +22,9 @@ msgstr "基本设置"
 msgid "Cookie Tools"
 msgstr "Cookie 工具"
 
+msgid "JDCookie Tools"
+msgstr "获取京东cookie扩展工具"
+
 msgid "Source Update Url"
 msgstr "更新源地址"
 
@@ -38,13 +41,10 @@ msgid "JD Url"
 msgstr "京东链接"
 
 msgid "Sign in ,then click JDCookie button.you will copy JD cookies, paste the cookie below."
-msgstr "登录后点击JDCookie 扩展工具复制cookie，然后粘贴到下面输入框中。"
+msgstr "登录后点击JDCookie 扩展工具复制cookie，然后粘贴到下面输入框中。（请使用F12调试工具，进入模拟手机浏览器模式）"
 
 msgid "Auto Update Script Service"
 msgstr "自动更新脚本服务"
-
-msgid "Auto Update"
-msgstr "自动更新"
 
 msgid "Update time (every day)"
 msgstr "更新时间 (每天)"
@@ -111,3 +111,6 @@ msgstr "当前脚本版本"
 
 msgid "Check ServerChan Service"
 msgstr "测试推送接口"
+
+msgid "Auto Update"
+msgstr "自动更新"

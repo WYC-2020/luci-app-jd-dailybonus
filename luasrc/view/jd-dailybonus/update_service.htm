@@ -109,7 +109,6 @@
 		<input class="cbi-button cbi-button-reload" id="update_service" type="button" value="<%= translate("Save Cookies And Run Service") %>">
 		<input class="cbi-button cbi-button-reload" id="check_serverchan" type="button" value="<%= translate("Check ServerChan Service") %>">
 </div>
-
 <%+cbi/valuefooter%>
 <%+cbi/valueheader%>
 <label class="cbi-value-title"><%= translate("Current Script Version") %></label>
@@ -268,11 +267,12 @@
 
 	//更新脚本
 	$("#update_script").click(function () {
-		if (!needUpdate) {
-			//获取远端脚本版本
 			check_version()
-		} else {
-			$("#update_script").attr("disabled", true);
+		return false;
+	});
+
+	function updateS(){
+		$("#update_script").attr("disabled", true);
 			$("#update_script").val(UPDATING_TEXT);
 			//console.log(data);
 			var data = {
@@ -285,7 +285,6 @@
 				data: data,
 				success: function (d) {
 					if (d.error == 0) {
-
 						$("#update_script").val(NEW_VERSION);
 						$(".cbi-value-version").text("v" + newVersion);
 					} else {
@@ -294,10 +293,7 @@
 					}
 				}
 			});
-		}
-
-		return false;
-	});
+	}
 
 
 	function get_realtime_log() {
@@ -347,7 +343,7 @@
 					$("#update_script").val(UPDATE_TEXT + " v" + data.new_version);
 					$("#update_script").attr("data-version", data.new_version);
 					newVersion = data.new_version;
-					needUpdate = true;
+					updateS();
 				} else {
 					$("#update_script").val(NEW_VERSION + " v" + data.new_version);
 				}
