@@ -1,5 +1,5 @@
 <%+cbi/valueheader%>
-<script src="/jd-dailybonus/jquery.min.js"></script>
+<script src="/jd-signdog/jquery.min.js"></script>
 <style>
 	.modals-bg {
 		position: fixed;
@@ -131,14 +131,14 @@
 
 <script type="text/javascript">
 
-	const SAVE_URL = '<%=luci.dispatcher.build_url("admin", "services", "jd-dailybonus","run")%>';
-	const CHECK_URL = '<%=luci.dispatcher.build_url("admin", "services", "jd-dailybonus","check_update")%>';
-	const UPDATE_URL = '<%=luci.dispatcher.build_url("admin", "services", "jd-dailybonus","update")%>';
+	const SAVE_URL = '<%=luci.dispatcher.build_url("admin", "services", "jd-signdog","run")%>';
+	const CHECK_URL = '<%=luci.dispatcher.build_url("admin", "services", "jd-signdog","check_update")%>';
+	const UPDATE_URL = '<%=luci.dispatcher.build_url("admin", "services", "jd-signdog","update")%>';
 	const CHECKING_TEXT = '<%= translate("Checking the New Version ...") %>';
 	const UPDATING_TEXT = '<%= translate("Updating script,please wait ...") %>';
 	const NEW_VERSION = '<%= translate("Is currently the latest version") %>';
 	const UPDATE_TEXT = '<%= translate("There is a new version, click to update") %>';
-	const CHECK_SERVERCHAN = '<%=luci.dispatcher.build_url("admin", "services", "jd-dailybonus","check_serverchan")%>';
+	const CHECK_SERVERCHAN = '<%=luci.dispatcher.build_url("admin", "services", "jd-signdog","check_serverchan")%>';
 	var needUpdate = false;
 	var newVersion;
 	var _responseLen;
@@ -160,16 +160,16 @@
 
 	//测试server酱
 	$("#check_serverchan").click(function () {
-		prefix_array = $("#cbi-jd-dailybonus-global .cbi-section-node").attr("id").split("-");
+		prefix_array = $("#cbi-jd-signdog-global .cbi-section-node").attr("id").split("-");
 		prefix = prefix_array[prefix_array.length - 1];
 				
-		var failed=($("[name='cbid.jd-dailybonus." + prefix + ".failed']").is(":checked"))?"1":"0";
-		var key= $("[name='cbid.jd-dailybonus." + prefix + ".serverchan']").val();
- 		var serverurl= $("[name='cbid.jd-dailybonus." + prefix + ".serverurl']").val();
+		var failed=($("[name='cbid.jd-signdog." + prefix + ".failed']").is(":checked"))?"1":"0";
+		var key= $("[name='cbid.jd-signdog." + prefix + ".serverchan']").val();
+ 		var serverurl= $("[name='cbid.jd-signdog." + prefix + ".serverurl']").val();
 
 		if(!key)
 		{
-			key= $("[name='cbid.jd-dailybonus." + prefix + ".dingding']").val();
+			key= $("[name='cbid.jd-signdog." + prefix + ".dingding']").val();
 			if(!key)
 			{
 				alert("请填写推送接口需要的参数");
@@ -201,34 +201,34 @@
 
 	//保存订阅按钮
 	$("#update_service").click(function () {
-		prefix_array = $("#cbi-jd-dailybonus-global .cbi-section-node").attr("id").split("-");
+		prefix_array = $("#cbi-jd-signdog-global .cbi-section-node").attr("id").split("-");
 		prefix = prefix_array[prefix_array.length - 1];
 		//console.log(prefix);
-		if ($("[name='cbid.jd-dailybonus." + prefix + ".auto_update']").is(":checked")) {
+		if ($("[name='cbid.jd-signdog." + prefix + ".auto_update']").is(":checked")) {
 			var auto_update = "1";
-			var auto_update_time = $("[name='cbid.jd-dailybonus." + prefix + ".auto_update_time']").val();
+			var auto_update_time = $("[name='cbid.jd-signdog." + prefix + ".auto_update_time']").val();
 		} else {
 			var auto_update = "0";
 			var auto_update_time = "0";
 		}
 		
-		if ($("[name='cbid.jd-dailybonus." + prefix + ".auto_run']").is(":checked")) {
+		if ($("[name='cbid.jd-signdog." + prefix + ".auto_run']").is(":checked")) {
 			var auto_run = "1";
-			var auto_run_time = $("[name='cbid.jd-dailybonus." + prefix + ".auto_run_time']").val();
+			var auto_run_time = $("[name='cbid.jd-signdog." + prefix + ".auto_run_time']").val();
 		} else {
 			var auto_run = "0";
 			var auto_run_time = "0";
 		}
-		var stop = $("[name='cbid.jd-dailybonus." + prefix + ".stop']").val();
-		var cookies = $("[name='cbid.jd-dailybonus." + prefix + ".cookie']").val();
-		var cookies2 = $("[name='cbid.jd-dailybonus." + prefix + ".cookie2']").val();
-		var failed=($("[name='cbid.jd-dailybonus." + prefix + ".failed']").is(":checked"))?"1":"0";
-		var key = $("[name='cbid.jd-dailybonus." + prefix + ".serverchan']").val();
-		var serverurl= $("[name='cbid.jd-dailybonus." + prefix + ".serverurl']").val();
-		var jd_enable=($("[name='cbid.jd-dailybonus." + prefix + ".jd_enable']").is(":checked"))?"1":"0";
+		var stop = $("[name='cbid.jd-signdog." + prefix + ".stop']").val();
+		var cookies = $("[name='cbid.jd-signdog." + prefix + ".cookie']").val();
+		var cookies2 = $("[name='cbid.jd-signdog." + prefix + ".cookie2']").val();
+		var failed=($("[name='cbid.jd-signdog." + prefix + ".failed']").is(":checked"))?"1":"0";
+		var key = $("[name='cbid.jd-signdog." + prefix + ".serverchan']").val();
+		var serverurl= $("[name='cbid.jd-signdog." + prefix + ".serverurl']").val();
+		var jd_enable=($("[name='cbid.jd-signdog." + prefix + ".jd_enable']").is(":checked"))?"1":"0";
 		if(!key)
 		{
-			key = $("[name='cbid.jd-dailybonus." + prefix + ".dingding']").val();
+			key = $("[name='cbid.jd-signdog." + prefix + ".dingding']").val();
 			if(!key)
 			{
 				alert("请填写推送接口需要的参数");
@@ -310,7 +310,7 @@
 				}
 				console.log(noChange);
 				if (noChange > 10) {
-					window.location.href = '<%=luci.dispatcher.build_url("admin", "services", "jd-dailybonus")%>';
+					window.location.href = '<%=luci.dispatcher.build_url("admin", "services", "jd-signdog")%>';
 					return false;
 				} else {
 					setTimeout("get_realtime_log();", 250);

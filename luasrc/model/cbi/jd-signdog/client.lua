@@ -1,4 +1,4 @@
-local jd = "jd-dailybonus"
+local jd = "jd-signdog"
 local uci = luci.model.uci.cursor()
 local sys = require "luci.sys"
 
@@ -14,7 +14,7 @@ o.rmempty = false
 
 o = s:option(DummyValue, "", "")
 o.rawhtml = true
-o.template = "jd-dailybonus/cookie_tools"
+o.template = "jd-signdog/cookie_tools"
 
 o = s:option(ListValue, "remote_url", translate("Source Update Url"))
 o:value("https://cdn.jsdelivr.net/gh/NobyDa/Script/JD-DailyBonus/JD_DailyBonus.js", translate("GitHub"))
@@ -78,6 +78,6 @@ o:depends("auto_run", "1")
 
 o = s:option(DummyValue, "", "")
 o.rawhtml = true
-o.version = sys.exec('uci get jd-dailybonus.@global[0].version')
-o.template = "jd-dailybonus/update_service"
+o.version = sys.exec('uci get jd-signdog.@global[0].version')
+o.template = "jd-signdog/update_service"
 return m

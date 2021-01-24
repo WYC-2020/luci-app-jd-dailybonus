@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright (C) 2020 luci-app-jd-dailybonus <jerrykuku@qq.com>
+# Copyright (C) 2020 luci-app-jd-signdog <jerrykuku@qq.com>
 #
 # This is free software, licensed under the GNU General Public License v3.
 # See /LICENSE for more information.
@@ -9,9 +9,9 @@
 # 101 没有新版本无需更新
 # 0   更新成功
 
-NAME=jd-dailybonus
+NAME=jd-signdog
 TEMP_SCRIPT=/tmp/JD_DailyBonus.js
-JD_SCRIPT=/usr/share/jd-dailybonus/JD_DailyBonus.js
+JD_SCRIPT=/usr/share/jd-signdog/JD_DailyBonus.js
 LOG_HTM=/www/JD_DailyBonus.htm
 CRON_FILE=/etc/crontabs/root
 usage() {
@@ -77,12 +77,12 @@ fill_cookie() {
 
 add_cron() {
 if [ $(uci_get_by_type global jd_enable 0) -eq 1 ]; then
-    sed -i '/jd-dailybonus/d' $CRON_FILE
-    [ $(uci_get_by_type global auto_run 0) -eq 1 ] && echo '5 '$(uci_get_by_type global auto_run_time)' * * * sleep '$(expr $(head -n 128 /dev/urandom | tr -dc "0123456789" | head -c4) % 180)'s; /usr/share/jd-dailybonus/newapp.sh -w' >>$CRON_FILE
-    [ $(uci_get_by_type global auto_update 0) -eq 1 ] && echo '1 '$(uci_get_by_type global auto_update_time)' * * * /usr/share/jd-dailybonus/newapp.sh -u' >>$CRON_FILE
+    sed -i '/jd-signdog/d' $CRON_FILE
+    [ $(uci_get_by_type global auto_run 0) -eq 1 ] && echo '5 '$(uci_get_by_type global auto_run_time)' * * * sleep '$(expr $(head -n 128 /dev/urandom | tr -dc "0123456789" | head -c4) % 180)'s; /usr/share/jd-signdog/newapp.sh -w' >>$CRON_FILE
+    [ $(uci_get_by_type global auto_update 0) -eq 1 ] && echo '1 '$(uci_get_by_type global auto_update_time)' * * * /usr/share/jd-signdog/newapp.sh -u' >>$CRON_FILE
     crontab $CRON_FILE
 else
-    sed -i '/jd-dailybonus/d' $CRON_FILE
+    sed -i '/jd-signdog/d' $CRON_FILE
     crontab $CRON_FILE
 fi
 }
@@ -184,8 +184,8 @@ update() {
     remote_ver=$(get_ver $TEMP_SCRIPT)
     cp -r $TEMP_SCRIPT $JD_SCRIPT
     fill_cookie
-    uci set jd-dailybonus.@global[0].version=$remote_ver
-    uci commit jd-dailybonus
+    uci set jd-signdog.@global[0].version=$remote_ver
+    uci commit jd-signdog
     cancel "0"
 }
 

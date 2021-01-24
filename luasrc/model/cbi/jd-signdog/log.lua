@@ -1,5 +1,5 @@
 local fs = require "nixio.fs"
-local jd = "jd-dailybonus"
+local jd = "jd-signdog"
 local conffile = "/www/JD_DailyBonus.htm"
 
 log = SimpleForm("logview")

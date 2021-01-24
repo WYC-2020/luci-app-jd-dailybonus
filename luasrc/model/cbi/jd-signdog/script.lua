@@ -1,5 +1,5 @@
 local fs = require "nixio.fs"
-local jd = "jd-dailybonus"
+local jd = "jd-signdog"
 
 s = SimpleForm("scriptview")
 
@@ -14,10 +14,10 @@ function sync_value_to_file(value, file)
 end
 
 function view_cfg.cfgvalue()
-    return fs.readfile("/usr/share/jd-dailybonus/JD_DailyBonus.js") or ""
+    return fs.readfile("/usr/share/jd-signdog/JD_DailyBonus.js") or ""
 end
 function view_cfg.write(self, section, value)
-    sync_value_to_file(value, "/usr/share/jd-dailybonus/JD_DailyBonus.js")
+    sync_value_to_file(value, "/usr/share/jd-signdog/JD_DailyBonus.js")
 end
 
 return s

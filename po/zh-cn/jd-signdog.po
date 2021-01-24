@@ -2,7 +2,7 @@ msgid ""
 msgstr "Content-Type: text/plain; charset=UTF-8\n"
 
 msgid "JD-DailyBonus"
-msgstr "京东签到服务"
+msgstr "京东签到狗"
 
 msgid "Enable"
 msgstr "启用"
