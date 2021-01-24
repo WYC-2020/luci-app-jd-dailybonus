@@ -33,7 +33,7 @@ endef
 
 define Package/luci-app-jd-signdog/install
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_CONF) ./root/etc/config/jd-signdog$(1)/etc/config/jd-signdog
+	$(INSTALL_CONF) ./root/etc/config/jd-signdog $(1)/etc/config/jd-signdog
 
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./root/etc/init.d/* $(1)/etc/init.d/
